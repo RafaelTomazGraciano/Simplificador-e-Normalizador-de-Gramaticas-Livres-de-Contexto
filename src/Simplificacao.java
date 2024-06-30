@@ -6,13 +6,13 @@ public class Simplificacao {
     private List<Character> simboloesInuteis;
     private StringBuilder esquerdaConcatenada;
     private String esquerdaStr;
-    private List<String> producoesVazias;
+    private List<String> simbolosInalcancaveis;
 
     Simplificacao(){
         simboloesInuteis = new ArrayList<Character>();
         esquerdaConcatenada = new StringBuilder();
         esquerdaStr = "";
-        producoesVazias = new ArrayList<String>();
+        simbolosInalcancaveis = new ArrayList<String>();
     }
 
     public List<Character> simbolosInuteis(List<String> esquerda, List<String> direita){
@@ -45,10 +45,10 @@ public class Simplificacao {
                 }
             }
             if(encontrou == true){
-                producoesVazias.add(esquerda.get(i));
+                simbolosInalcancaveis.add(esquerda.get(i));
             }
         }
-        return producoesVazias;
+        return simbolosInalcancaveis;
     }
 
 

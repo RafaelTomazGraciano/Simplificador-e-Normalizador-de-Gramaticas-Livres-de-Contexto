@@ -22,8 +22,8 @@ public class Main {
         System.out.println("símbolos inúteis: " + simbolosInuteis);
 
         // símbolos inalcançáveis
-        List<String> producoesVazias = simplificacao.simbolosInalcancaveis(esquerda, direita);
-        System.out.println("símbolos inalcançáveis: " + producoesVazias);
+        List<String> simbolosInalcancaveis = simplificacao.simbolosInalcancaveis(esquerda, direita);
+        System.out.println("símbolos inalcançáveis: " + simbolosInalcancaveis);
 
         // susbtituições de produções
     }
