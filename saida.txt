@@ -1,0 +1,8 @@
+SIMPLIFICAÇÃO
+
+S -> aAa | b
+A -> a | aA
+
+
+
+

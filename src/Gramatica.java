@@ -1,33 +1,36 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
 
 public class Gramatica {
 
-    private List<String> esquerda;
-    private List<String> direita;
+    //Estou considerando que o primeiro simbolo é o inicial
 
-    Gramatica() {
-        this.esquerda = new ArrayList<>();
-        this.direita = new ArrayList<>();
+    private Map<String, List<String>> gramatica;
+
+    public Gramatica() {
+        gramatica = new LinkedHashMap<>();
     }
 
-    public void gramatica(String texto) {
+    public void gramatica(String texto){
+
         String[] producoes = texto.split("\n");
-        for(String producao : producoes){
-            String[] partes = producao.split("\\s*->\\s*");
-            this.esquerda.add(partes[0]);
-            this.direita.add(partes[1]);
+        for (String producao : producoes) {
+            String[] partes = producao.split("->");
+            String esquerda = partes[0].trim();
+            String[] direitas = partes[1].trim().split("\\|");
+
+            List<String> producoesDireitas = new ArrayList<>();
+            for (String direita : direitas) {
+                producoesDireitas.add(direita.trim());
+            }
+            gramatica.put(esquerda, producoesDireitas);
         }
     }
 
-
-    public List<String> getEsquerda() {
-        return esquerda;
+    public Map<String, List<String>> getGramatica() {
+        return gramatica;
     }
 
 
-    public List<String> getDireita() {
-        return direita;
-    }
 }
 

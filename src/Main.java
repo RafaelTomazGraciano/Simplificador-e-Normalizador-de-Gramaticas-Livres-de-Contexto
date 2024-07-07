@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
@@ -6,25 +7,42 @@ public class Main {
         //le arquivo de texto
         String texto = LeituraArquivo.lerArquivo("gramatica.txt");
 
-        //divide a gramatica a esquerda e a direita
+        //gera a gramatica
         Gramatica gramatica = new Gramatica();
         gramatica.gramatica(texto);
-        List<String> esquerda =  gramatica.getEsquerda();
-        List<String> direita =  gramatica.getDireita();
-        System.out.println(esquerda);
-        System.out.println(direita);
+        Map<String, List<String>> producoes = gramatica.getGramatica();
+        System.out.println(producoes);
+
 
         // SIMPLIFICACAO
         Simplificacao simplificacao = new Simplificacao();
 
-        // símbolos inalcançáveis
-        List<Character> simbolosInuteis = simplificacao.simbolosInuteis(esquerda, direita);
-        System.out.println("símbolos inúteis: " + simbolosInuteis);
-
-        // símbolos inalcançáveis
-        List<String> simbolosInalcancaveis = simplificacao.simbolosInalcancaveis(esquerda, direita);
-        System.out.println("símbolos inalcançáveis: " + simbolosInalcancaveis);
+        // produções vazias
+        simplificacao.producoesVazias(producoes);
+        System.out.println(producoes);
 
         // susbtituições de produções
+        simplificacao.substituicoesProducoes(producoes);
+        System.out.println(producoes);
+
+        // símbolos inuteis
+        simplificacao.simbolosInuteis(producoes);
+        System.out.println(producoes);
+
+        // símbolos inalcançáveis
+        simplificacao.simbolosInalcancaveis(producoes);
+        System.out.println(producoes);
+
+        // Escreve a simplificacao no arquivo
+        EscreverArquivo.escreveSimplificacao(producoes, "SIMPLIFICAÇÃO");
+
+        // Normas
+
+
+        //Chomsky
+
+        // Escreve Chomsky no arquivo
+        //EscreverArquivo.escreveChomsky(producoes, "CHOMSKY");
+
     }
 }

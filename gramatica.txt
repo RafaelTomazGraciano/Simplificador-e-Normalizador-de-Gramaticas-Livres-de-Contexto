@@ -1,3 +1,8 @@
-S -> aAa | bBv
-A -> a | aA
-C -> c | cC
+S -> aAa | bBb | E
+A -> a | aA | &
+C -> c | cC | F
+F -> &
+E -> b
+
+
+
